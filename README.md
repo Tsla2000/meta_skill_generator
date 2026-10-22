@@ -16,7 +16,7 @@
 
 ## 快速开始
 
-把 `SKILL.md` 交给任何支持 Agent Skills 的宿主（Claude Code、Codex、Muse 等），然后给它一个关键词：
+把 `SKILL.md` 交给任何支持 Agent Skills 的宿主（Claude Code、Codex、Gemini CLI、Muse 等），或投喂给 REA、Grok Bot 等执行型 Agent，然后给它一个关键词：
 
 ```text
 给「REA」生成一份专用 Skill
@@ -37,11 +37,25 @@
 | `references/portability.md` | 各宿主的安装与移植方法 |
 | `examples/` | 两份验证样例：浏览器扩展逆向（技术类）、季度持仓复盘（研究类），结构故意不同构 |
 
-## 安装
+## 支持的宿主与安装
 
-- **Muse**：把本目录复制到 `~/workspace/custom-skills/meta_skill_generator/`（文件夹名用下划线版），保留 `skill.yaml`，`SKILL.md` 去掉 frontmatter。用 skill_search 搜到即装好。
-- **Claude Code / Codex**：保持本目录原样（kebab-case 文件夹名与 SKILL.md 的 frontmatter name 一致），放入宿主的 skills 目录。
-- **REA / Grok Bot 等文案投喂型 Agent**：不需要装文件，让宿主按 SKILL.md 生成模式 A 文案后整份粘贴投喂。
+原生支持 Agent Skills 开放规范的宿主共用同一套文件，只有放置目录不同（完整矩阵见 `references/portability.md`）：
+
+| 宿主 | 个人级目录 | 项目级目录 |
+|---|---|---|
+| Claude Code | `~/.claude/skills/` | `.claude/skills/` |
+| OpenAI Codex | `~/.agents/skills/` | `.agents/skills/` |
+| Gemini CLI | `~/.gemini/skills/` | `.gemini/skills/` |
+| Cursor | `~/.cursor/skills/` | `.cursor/skills/` |
+| GitHub Copilot / VS Code | `~/.copilot/skills/` | `.github/skills/` |
+| Muse | `~/workspace/custom-skills/<skill_name>/`（snake_case 文件夹，`SKILL.md` 去 frontmatter，元数据放 `skill.yaml`） | 同左 |
+
+一行安装（支持 skills CLI 的宿主）：`npx skills add Tsla2000/meta_skill_generator -g -a '*'`，或 Gemini CLI 用 `gemini skills install https://github.com/Tsla2000/meta_skill_generator --consent`。
+
+文案投喂型 Agent（没有 Skills 目录机制）：
+
+- **REA**：把生成的模式 A 文案作为任务指令直接交给它执行。
+- **Grok Bot**：把 SKILL.md、skill.yaml、references 打包成 zip 投喂，或整份粘贴文案。包里注明 Muse 专有实现的部分需映射成它自己的能力。
 
 自检：`python3 tools/validate.py` 检查目录结构、frontmatter、引用完整性与样例存在性。
 
