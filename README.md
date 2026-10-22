@@ -19,7 +19,7 @@
 把 `SKILL.md` 交给任何支持 Agent Skills 的宿主（Claude Code、Codex、Muse 等），然后给它一个关键词：
 
 ```text
-给「LaunchMotion」生成一份专用 Skill
+给「REA」生成一份专用 Skill
 ```
 
 默认输出一份可直接复制给 REA 等执行型 Agent 的文案（模式 A）。明确要求文件版时，输出完整 Skill 目录（模式 B）。
