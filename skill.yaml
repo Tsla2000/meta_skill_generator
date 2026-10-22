@@ -1,0 +1,5 @@
+name: "meta_skill_generator"
+title: "Meta-Skill Generator（专用 Skill 生成器）"
+description: "当用户给出一个关键词、技术名词、产品名称、研究方向或模糊目标，并希望得到一份可交给执行型 Agent（如 REA）直接使用的专用 Skill 时使用。负责先分析目标、再生成定制化的执行文案。不用于直接执行用户的最终任务，也不用于单纯扩写提示词。"
+category: "Work and knowledge"
+include_in_prompt: true
